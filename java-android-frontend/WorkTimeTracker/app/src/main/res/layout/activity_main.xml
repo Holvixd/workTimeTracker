@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vilho.worktimetracker.MainActivity">
+
+
+
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome to WorkTimeTracker!"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/goToCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToCalendar"
+        android:text="Show work"
+        android:textAlignment="center"
+        android:layout_weight="1"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/goToFormButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="goToForm"
+            android:text="Enter new working time"
+            android:textAlignment="center" />
+    </TableRow>
+
+
+</TableLayout>

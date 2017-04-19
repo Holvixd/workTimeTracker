@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vilho.worktimetracker.FormActivity">
+
+    <TableRow>
+        <EditText
+            android:id="@+id/edName"
+            android:hint="Name"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:maxLength="30"/>
+    </TableRow>
+    <TableRow
+        android:maxWidth="300dp">
+        <EditText
+            android:id="@+id/edWork"
+            android:hint="Work subject"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:lines="2"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:width="250dip"
+            android:layout_height="wrap_content"
+            android:text="Work start time"
+            android:onClick="showStartTimePickerDialog"
+            android:id="@+id/startTimeBtn"/>
+        <TextView
+            android:id="@+id/startTime"
+            android:text="Start Time"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:background="@drawable/back"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:width="250dip"
+            android:layout_height="wrap_content"
+            android:text="Pick start date"
+            android:onClick="showDateStartPickerDialog"/>
+        <TextView
+            android:id="@+id/startDate"
+            android:text="Start Date"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:background="@drawable/back"/>
+    </TableRow>
+
+
+    <TableRow>
+        <Button
+            android:width="250dip"
+            android:layout_height="wrap_content"
+            android:text="Work end time"
+            android:onClick="showEndTimePickerDialog"
+            android:id="@+id/endTimeBtn"/>
+        <TextView
+            android:id="@+id/endTime"
+            android:text="End Time"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:background="@drawable/back"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:width="250dip"
+            android:layout_height="wrap_content"
+            android:text="Pick end date"
+            android:onClick="showDateEndPickerDialog"/>
+        <TextView
+            android:id="@+id/endDate"
+            android:text="End Date"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:background="@drawable/back"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Submit work"
+            android:onClick="submit"/>
+    </TableRow>
+
+</TableLayout>
