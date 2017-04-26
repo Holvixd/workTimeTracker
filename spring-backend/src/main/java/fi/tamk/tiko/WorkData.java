@@ -12,6 +12,7 @@ public class WorkData {
     private long id;
     String name;
     String subject;
+	String company;
     String startTime;
     String startDate;
     String endTime;
@@ -23,6 +24,14 @@ public class WorkData {
 
     public void setName(String name) {
         this.name = name;
+    }
+	
+	public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getSubject() {
@@ -70,8 +79,9 @@ public class WorkData {
 		
 	}
 
-    public WorkData(String name, String subject, String startTime, String startDate, String endTime, String endDate) {
+    public WorkData(String name, String company, String subject, String startTime, String startDate, String endTime, String endDate) {
         this.name = name;
+		this.company = company;
         this.subject = subject;
         this.startTime = startTime;
         this.startDate = startDate;
@@ -83,6 +93,7 @@ public class WorkData {
     public java.lang.String toString() {
         return "WorkData{" +
                 "name='" + name + '\'' +
+				", company='" + company + '\'' +
                 ", subject='" + subject + '\'' +
                 ", startTime='" + startTime + '\'' +
                 ", startDate='" + startDate + '\'' +

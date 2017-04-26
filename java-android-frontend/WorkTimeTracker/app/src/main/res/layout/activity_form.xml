@@ -17,12 +17,23 @@
     <TableRow
         android:maxWidth="300dp">
         <EditText
+            android:id="@+id/edCompany"
+            android:hint="Company name"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:lines="1"
+            android:maxLength="30"/>
+    </TableRow>
+    <TableRow
+        android:maxWidth="300dp">
+        <EditText
             android:id="@+id/edWork"
             android:hint="Work subject"
             android:layout_weight="1"
             android:maxLines="2"
             android:lines="2"/>
     </TableRow>
+
     <TableRow>
         <Button
             android:width="250dip"

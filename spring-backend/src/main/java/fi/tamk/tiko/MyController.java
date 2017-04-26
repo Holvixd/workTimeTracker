@@ -35,10 +35,13 @@ public class MyController {
         return database.findAll();
     }
 	
-	@RequestMapping(value = "/workForm/{name}",  method=RequestMethod.GET)
-    public WorkData fetchWorkData(@PathVariable String name) {
+	@RequestMapping(value = "/workForm/{date}",  method=RequestMethod.GET)
+    public WorkData fetchWorkData(@PathVariable String date) {
+		System.out.println(date);
         for(WorkData c : database.findAll()) {
-            if(c.getName() == name) {
+			System.out.println(c.getStartDate());
+            if(c.getStartDate().equals(date)) {
+				
                 return c;
             }
         }

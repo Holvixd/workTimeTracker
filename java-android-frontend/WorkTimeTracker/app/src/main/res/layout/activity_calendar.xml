@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vilho.worktimetracker.CalendarActivity">
+
+    <TableRow>
+        <CalendarView
+            android:id="@+id/calendar"
+            android:textAlignment="center">
+        </CalendarView>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/calendarTextName"
+            android:text="Click on a specific day to view work done by that day"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/calendarTextSubject"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/calendarTextStartTime"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </TableRow>
+
+</TableLayout>

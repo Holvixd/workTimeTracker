@@ -22,6 +22,8 @@ public class FormActivity extends AppCompatActivity {
     String ed1Text;
     EditText ed2;
     String ed2Text;
+    EditText ed3;
+    String ed3Text;
     TextView tv1;
     String tv1Text;
     TextView tv2;
@@ -36,6 +38,7 @@ public class FormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form);
         ed1=(EditText) findViewById(R.id.edName);
         ed2=(EditText) findViewById(R.id.edWork);
+        ed3=(EditText) findViewById(R.id.edCompany);
         tv1=(TextView) findViewById(R.id.startTime);
         tv2=(TextView) findViewById(R.id.startDate);
         tv3=(TextView) findViewById(R.id.endTime);
@@ -61,6 +64,7 @@ public class FormActivity extends AppCompatActivity {
     public void submit(View v) {
         ed1Text = ed1.getText().toString();
         ed2Text = ed2.getText().toString();
+        ed3Text = ed3.getText().toString();
         tv1Text = tv1.getText().toString();
         tv2Text = tv2.getText().toString();
         tv3Text = tv3.getText().toString();
@@ -76,13 +80,14 @@ public class FormActivity extends AppCompatActivity {
 
             String workForm="{name: \""+ed1Text
                     +"\", subject: \""+ed2Text
+                    +"\", company: \""+ed3Text
                     +"\", startTime: \""+tv1Text
                     +"\", startDate: \""+tv2Text
                     +"\", endTime: \""+tv3Text
                     +"\", endDate: \""+tv4Text+"\"}";
             try {
                 JSONObject workObj = new JSONObject(workForm);
-                URL url = new URL("http://192.168.8.104:8080/workForm");
+                URL url = new URL("http://192.168.8.103:8080/workForm");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");

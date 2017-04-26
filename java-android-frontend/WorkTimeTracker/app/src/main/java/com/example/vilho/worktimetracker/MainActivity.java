@@ -17,4 +17,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this, FormActivity.class);
         startActivity(i);
     }
+
+    public void goToCalendar(View v){
+        Intent i = new Intent(MainActivity.this, CalendarActivity.class);
+        startActivity(i);
+    }
 }
