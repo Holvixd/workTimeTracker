@@ -35,6 +35,15 @@ public class MyController {
         return database.findAll();
     }
 	
+	@RequestMapping(value = "/dates",  method=RequestMethod.GET)
+    public List<String> fetchWorkDates() {
+		List<String> list = new ArrayList<>();
+		for(WorkData c : database.findAll()) {
+            list.add(c.getStartDate());
+        }
+        return list;
+    }
+	
 	@RequestMapping(value = "/workForm/{date}",  method=RequestMethod.GET)
     public WorkData fetchWorkData(@PathVariable String date) {
 		System.out.println(date);

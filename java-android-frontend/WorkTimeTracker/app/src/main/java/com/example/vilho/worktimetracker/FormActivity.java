@@ -87,7 +87,7 @@ public class FormActivity extends AppCompatActivity {
                     +"\", endDate: \""+tv4Text+"\"}";
             try {
                 JSONObject workObj = new JSONObject(workForm);
-                URL url = new URL("http://192.168.8.103:8080/workForm");
+                URL url = new URL("http://192.168.8.102:8080/workForm");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");

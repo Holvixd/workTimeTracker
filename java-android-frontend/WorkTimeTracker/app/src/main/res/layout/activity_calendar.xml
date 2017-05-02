@@ -7,10 +7,13 @@
     tools:context="com.example.vilho.worktimetracker.CalendarActivity">
 
     <TableRow>
-        <CalendarView
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendar"
-            android:textAlignment="center">
-        </CalendarView>
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            app:mcv_showOtherDates="all">
+        </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
     </TableRow>
     <TableRow>
         <TextView
