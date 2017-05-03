@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vilho.worktimetracker.ShowWorkActivity">
+
+
+
+    <TableRow>
+        <TextView
+            android:id="@+id/showName"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/showCompany"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/showSubject"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/showStartTime"
+            android:text="Start Time"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:background="@drawable/back"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/showStartDate"
+            android:text="Start Date"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:background="@drawable/back"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/showEndTime"
+            android:text="End Time"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:background="@drawable/back"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/showEndDate"
+            android:text="End Date"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:background="@drawable/back"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:text="Delete"
+            android:id="@+id/delete"
+            android:layout_weight="1"
+            android:onClick="goDelete"/>
+        <Button
+            android:text="Edit"
+            android:id="@+id/edit"
+            android:onClick="goToEdit"
+            android:layout_weight="1"/>
+    </TableRow>
+</TableLayout>

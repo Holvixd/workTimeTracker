@@ -37,6 +37,24 @@ public class DateStartPickerFragment extends DialogFragment
         Date date = new Date(year-1900,month,day);
         month++;
         Toast.makeText(getActivity(),date.toString(),Toast.LENGTH_SHORT).show();
-        tv1.setText(day+"."+month+"."+year);
+        String days;
+        if (day<10){
+            days = "0"+day;
+        }else{
+            days=day+"";
+        }
+        String months;
+        if (month<10){
+            months = "0"+month;
+        }else{
+            months=month+"";
+        }
+        String years;
+        if (year<10){
+            years = "0"+year;
+        }else{
+            years=year+"";
+        }
+        tv1.setText(days+"."+months+"."+years);
     }
 }

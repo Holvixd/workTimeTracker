@@ -92,6 +92,7 @@
     </TableRow>
     <TableRow>
         <Button
+            android:id="@+id/submitWork"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="wrap_content"

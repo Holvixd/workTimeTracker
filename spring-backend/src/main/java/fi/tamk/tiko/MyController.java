@@ -40,21 +40,33 @@ public class MyController {
 		List<String> list = new ArrayList<>();
 		for(WorkData c : database.findAll()) {
             list.add(c.getStartDate());
+			System.out.println(c.getStartDate());
         }
         return list;
     }
 	
+	@RequestMapping(value = "/update/{id}",  method=RequestMethod.POST)
+    public void updateWork(@PathVariable long id, @RequestBody WorkData data) {
+		database.delete(id);
+		database.save(data);
+    }
+	
+	@RequestMapping(value = "/delete/{id}",  method=RequestMethod.DELETE)
+    public void updateWork(@PathVariable long id) {
+		database.delete(id);
+    }
+	
 	@RequestMapping(value = "/workForm/{date}",  method=RequestMethod.GET)
-    public WorkData fetchWorkData(@PathVariable String date) {
-		System.out.println(date);
+    public List<WorkData> fetchWorkData(@PathVariable String date) {
+		List<WorkData> list = new ArrayList<>();
         for(WorkData c : database.findAll()) {
 			System.out.println(c.getStartDate());
             if(c.getStartDate().equals(date)) {
 				
-                return c;
+                list.add(c);
             }
         }
-        return null;
+        return list;
     }
 	
 }

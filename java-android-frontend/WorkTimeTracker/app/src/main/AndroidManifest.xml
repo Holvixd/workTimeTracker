@@ -25,9 +25,19 @@
             android:name=".FormActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".CalendarActivity"
+        <activity
+            android:name=".CalendarActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" ></activity>
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ShowWorkActivity"
+            android:configChanges="orientation"
+            android:noHistory="true"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".FormUpdateActivity"
+            android:configChanges="orientation"
+            android:noHistory="true"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

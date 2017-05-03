@@ -18,6 +18,10 @@ public class WorkData {
     String endTime;
     String endDate;
 
+	public long getId(){
+		return id;
+	}
+	
     public String getName() {
         return name;
     }
@@ -99,6 +103,7 @@ public class WorkData {
                 ", startDate='" + startDate + '\'' +
                 ", endTime='" + endTime + '\'' +
                 ", endDate='" + endDate + '\'' +
+				", id='" + id + '\'' +
                 '}';
     }
 }
