@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.vilho.worktimetracker.LoginActivity">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:id="@+id/logUserName"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:id="@+id/logPassword"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/logButton"
+        android:onClick="onClick"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Don't have an account?"
+        android:textSize="20dp"
+        android:id="@+id/logInfo1">
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Register now by clicking here!"
+        android:textSize="20dp"
+        android:id="@+id/logInfo2"
+        android:layout_weight="1"
+        android:onClick="goToRegister">
+    </TextView>
+
+    <TextView
+        android:id="@+id/logInfo3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Login/registering not working? Try the app as a public test user by clicking here!"
+        android:onClick="debug"></TextView>
+
+
+</LinearLayout>

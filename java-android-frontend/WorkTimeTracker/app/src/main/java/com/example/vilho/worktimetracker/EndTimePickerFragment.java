@@ -12,7 +12,11 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 /**
- * Created by Vilho on 19.4.2017.
+ * The EndTimePickerFragment fragment shows a timepicker for picking a work ending time.
+ *
+ * @author  Vilho Stenman
+ * @version 4.0
+ * @since   1.0
  */
 
 public class EndTimePickerFragment extends DialogFragment

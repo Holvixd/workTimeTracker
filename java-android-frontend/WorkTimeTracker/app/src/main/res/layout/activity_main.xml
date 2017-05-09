@@ -17,11 +17,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Welcome to WorkTimeTracker!"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+    </TableRow>
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/goToLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logOut"
+            android:text="Logout"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+    </TableRow>
+    <!--
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/goToLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="goToLogin"
+            android:text="Login"
             android:textAlignment="center"
             android:layout_weight="1"/>
 
     </TableRow>
 
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/goToRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="goToRegister"
+            android:text="Register"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+    </TableRow>
+    -->
     <TableRow android:layout_width="match_parent"
     android:layout_height="match_parent">
 

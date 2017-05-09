@@ -15,11 +15,6 @@
             android:name=".MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".FormActivity"
@@ -30,14 +25,28 @@
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".ShowWorkActivity"
+        <activity
+            android:name=".ShowWorkActivity"
             android:configChanges="orientation"
             android:noHistory="true"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".FormUpdateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FormUpdateActivity"
             android:configChanges="orientation"
             android:noHistory="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".LoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
     </application>
 
 </manifest>

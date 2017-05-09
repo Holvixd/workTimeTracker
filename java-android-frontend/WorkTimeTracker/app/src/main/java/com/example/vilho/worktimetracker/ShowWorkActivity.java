@@ -19,6 +19,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * The ShowWorkActivity activity shows specific clicked worked data.
+ * User can edit and delete shown data by moving forward from ShowWorkActivity.
+ *
+ * @author  Vilho Stenman
+ * @version 4.0
+ * @since   3.0
+ */
 public class ShowWorkActivity extends AppCompatActivity {
     TextView showName;
     TextView showCompany;
@@ -64,7 +72,7 @@ public class ShowWorkActivity extends AppCompatActivity {
         protected String doInBackground(URL... params) {
 
             try {
-                URL url = new URL("http://192.168.8.103:8080/delete/"+getIntent().getLongExtra("id",0));
+                URL url = new URL("http://46.101.111.83:8008/delete/"+getIntent().getLongExtra("id",0));
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("DELETE");
                 urlConnection.setRequestProperty("User-Agent", USER_AGENT);

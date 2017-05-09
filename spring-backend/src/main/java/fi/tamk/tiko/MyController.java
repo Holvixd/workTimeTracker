@@ -35,12 +35,16 @@ public class MyController {
         return database.findAll();
     }
 	
-	@RequestMapping(value = "/dates",  method=RequestMethod.GET)
-    public List<String> fetchWorkDates() {
+	
+	@RequestMapping(value = "/dates/{userName}",  method=RequestMethod.GET)
+    public List<String> fetchWorkDates(@PathVariable String userName) {
 		List<String> list = new ArrayList<>();
 		for(WorkData c : database.findAll()) {
-            list.add(c.getStartDate());
-			System.out.println(c.getStartDate());
+			if(userName.equals(c.getUserName())){
+				list.add(c.getStartDate());
+				System.out.println(c.getStartDate());
+			}
+
         }
         return list;
     }
@@ -56,13 +60,12 @@ public class MyController {
 		database.delete(id);
     }
 	
-	@RequestMapping(value = "/workForm/{date}",  method=RequestMethod.GET)
-    public List<WorkData> fetchWorkData(@PathVariable String date) {
+	@RequestMapping(value = "/workForm/{userName}/{date}",  method=RequestMethod.GET)
+    public List<WorkData> fetchWorkData(@PathVariable String userName, @PathVariable String date) {
 		List<WorkData> list = new ArrayList<>();
         for(WorkData c : database.findAll()) {
-			System.out.println(c.getStartDate());
-            if(c.getStartDate().equals(date)) {
-				
+            if(c.getStartDate().equals(date)&&userName.equals(c.getUserName())) {
+				System.out.println(c.getStartDate());
                 list.add(c);
             }
         }

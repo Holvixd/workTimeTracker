@@ -2,11 +2,13 @@ package com.example.vilho.worktimetracker;
 
 import android.os.AsyncTask;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +18,17 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+/**
+ * The FormActivity activity shows a form that user can fill with workdata.
+ *
+ * @author  Vilho Stenman
+ * @version 4.0
+ * @since   1.0
+ */
 public class FormActivity extends AppCompatActivity {
     EditText ed1;
     String ed1Text;
@@ -43,6 +55,7 @@ public class FormActivity extends AppCompatActivity {
         tv2=(TextView) findViewById(R.id.startDate);
         tv3=(TextView) findViewById(R.id.endTime);
         tv4=(TextView) findViewById(R.id.endDate);
+        ed1.setText(getIntent().getStringExtra("name"));
     }
 
     public void showStartTimePickerDialog(View v) {
@@ -62,16 +75,40 @@ public class FormActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
     public void submit(View v) {
-        ed1Text = ed1.getText().toString();
-        ed2Text = ed2.getText().toString();
-        ed3Text = ed3.getText().toString();
-        tv1Text = tv1.getText().toString();
-        tv2Text = tv2.getText().toString();
-        tv3Text = tv3.getText().toString();
-        tv4Text = tv4.getText().toString();
-        new SendWork().execute();
+        boolean success = checkInputs();
+        if(success){
+            ed1Text = ed1.getText().toString();
+            ed2Text = ed2.getText().toString();
+            ed3Text = ed3.getText().toString();
+            tv1Text = tv1.getText().toString();
+            tv2Text = tv2.getText().toString();
+            tv3Text = tv3.getText().toString();
+            tv4Text = tv4.getText().toString();
+            new SendWork().execute();
+        }
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
+            builder.setMessage("Please select all times and dates.").setNegativeButton("Ok",null).create().show();
+        }
+
     }
 
+    public boolean checkInputs(){
+        boolean success = true;
+        if(tv1.getText().toString().contains("t")){
+            success = false;
+        }
+        if(tv2.getText().toString().contains("t")){
+            success = false;
+        }
+        if(tv3.getText().toString().contains("t")){
+            success = false;
+        }
+        if(tv4.getText().toString().contains("t")){
+            success = false;
+        }
+        return success;
+    }
 
 
     private class SendWork extends AsyncTask<URL, String, String> {
@@ -84,10 +121,11 @@ public class FormActivity extends AppCompatActivity {
                     +"\", startTime: \""+tv1Text
                     +"\", startDate: \""+tv2Text
                     +"\", endTime: \""+tv3Text
-                    +"\", endDate: \""+tv4Text+"\"}";
+                    +"\", endDate: \""+tv4Text
+                    +"\", userName: \""+getIntent().getStringExtra("userName")+"\"}";
             try {
                 JSONObject workObj = new JSONObject(workForm);
-                URL url = new URL("http://192.168.8.103:8080/workForm");
+                URL url = new URL("http://46.101.111.83:8008/workForm");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");
@@ -98,6 +136,13 @@ public class FormActivity extends AppCompatActivity {
                 out.writeBytes(workObj.toString());
                 out.flush();
                 out.close();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(FormActivity.this,"Work succesfully submitted",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                finish();
             }  catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

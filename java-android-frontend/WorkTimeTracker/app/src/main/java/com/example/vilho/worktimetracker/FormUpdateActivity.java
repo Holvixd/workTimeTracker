@@ -20,6 +20,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * The FormActivity activity shows a form filled with workdata that user can edit.
+ *
+ * @author  Vilho Stenman
+ * @version 4.0
+ * @since   3.0
+ */
 public class FormUpdateActivity extends AppCompatActivity {
     EditText ed1;
     String ed1Text;
@@ -41,8 +48,8 @@ public class FormUpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
         ed1=(EditText) findViewById(R.id.edName);
-        ed2=(EditText) findViewById(R.id.edWork);
-        ed3=(EditText) findViewById(R.id.edCompany);
+        ed2=(EditText) findViewById(R.id.edCompany);
+        ed3=(EditText) findViewById(R.id.edWork);
         tv1=(TextView) findViewById(R.id.startTime);
         tv2=(TextView) findViewById(R.id.startDate);
         tv3=(TextView) findViewById(R.id.endTime);
@@ -95,15 +102,16 @@ public class FormUpdateActivity extends AppCompatActivity {
         protected String doInBackground(URL... params) {
 
             String workForm="{name: \""+ed1Text
-                    +"\", subject: \""+ed2Text
-                    +"\", company: \""+ed3Text
+                    +"\", company: \""+ed2Text
+                    +"\", subject: \""+ed3Text
                     +"\", startTime: \""+tv1Text
                     +"\", startDate: \""+tv2Text
                     +"\", endTime: \""+tv3Text
-                    +"\", endDate: \""+tv4Text+"\"}";
+                    +"\", endDate: \""+tv4Text
+                    +"\", userName: \""+getIntent().getStringExtra("userName")+"\"}";
             try {
                 JSONObject workObj = new JSONObject(workForm);
-                URL url = new URL("http://192.168.8.103:8080/update/"+getIntent().getLongExtra("id",0));
+                URL url = new URL("http://46.101.111.83:8008/update/"+getIntent().getLongExtra("id",0));
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");

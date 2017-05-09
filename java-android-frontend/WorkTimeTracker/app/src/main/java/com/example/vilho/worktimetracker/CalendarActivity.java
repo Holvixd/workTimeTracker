@@ -36,6 +36,14 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 
+/**
+ * The CalendarActivity activity shows a calendar filled with workdata.
+ * It also shows work done on a specific day if its clicked.
+ *
+ * @author  Vilho Stenman
+ * @version 4.0
+ * @since   2.0
+ */
 public class CalendarActivity extends AppCompatActivity {
 
     MaterialCalendarView calendar;
@@ -81,6 +89,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(CalendarActivity.this,ShowWorkActivity.class);
                 try {
+                    i.putExtras(getIntent().getExtras());
                     i.putExtra("name",jsonList.get(position).getString("name"));
                     i.putExtra("company",jsonList.get(position).getString("company"));
                     i.putExtra("subject",jsonList.get(position).getString("subject"));
@@ -145,9 +154,6 @@ public class CalendarActivity extends AppCompatActivity {
         }
     }
 
-    public void toast(String toasterino){
-        Toast.makeText(this,toasterino,Toast.LENGTH_SHORT).show();
-    }
 
 
     private class FetchWork extends AsyncTask<URL, String, String> {
@@ -155,7 +161,7 @@ public class CalendarActivity extends AppCompatActivity {
         protected String doInBackground(URL... params) {
 
             try {
-                URL url = new URL("http://192.168.8.103:8080/workForm/"+day1+"."+month1+"."+year1+".");
+                URL url = new URL("http://46.101.111.83:8008/workForm/"+getIntent().getStringExtra("userName")+"/"+day1+"."+month1+"."+year1+".");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setRequestProperty("User-Agent", USER_AGENT);
@@ -204,7 +210,7 @@ public class CalendarActivity extends AppCompatActivity {
         protected String doInBackground(URL... params) {
 
             try {
-                URL url = new URL("http://192.168.8.103:8080/workForm/");
+                URL url = new URL("http://46.101.111.83:8008/workForm/");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setRequestProperty("User-Agent", USER_AGENT);
@@ -231,7 +237,10 @@ public class CalendarActivity extends AppCompatActivity {
                 obj2 = new JSONArray(response2);
 
                 for (int i = 0; i < obj2.length(); i++) {
-                    dates2.add(obj2.getJSONObject(i).getString("startDate").toString());
+                    if(getIntent().getStringExtra("userName").equals(obj2.getJSONObject(i).getString("userName").toString())){
+                        dates2.add(obj2.getJSONObject(i).getString("startDate").toString());
+                    }
+
                 }
                 for(int i = 0; i < dates2.size(); i++){
                     Date date=new Date();

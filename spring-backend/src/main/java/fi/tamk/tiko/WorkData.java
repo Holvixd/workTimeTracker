@@ -17,6 +17,7 @@ public class WorkData {
     String startDate;
     String endTime;
     String endDate;
+	String userName;
 
 	public long getId(){
 		return id;
@@ -77,13 +78,20 @@ public class WorkData {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+	public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
 
 	public WorkData(){
 		
 	}
 
-    public WorkData(String name, String company, String subject, String startTime, String startDate, String endTime, String endDate) {
+    public WorkData(String name, String company, String subject, String startTime, String startDate, String endTime, String endDate, String userName) {
         this.name = name;
 		this.company = company;
         this.subject = subject;
@@ -91,6 +99,7 @@ public class WorkData {
         this.startDate = startDate;
         this.endTime = endTime;
         this.endDate = endDate;
+		this.userName = userName;
     }
 
     @java.lang.Override
@@ -103,6 +112,7 @@ public class WorkData {
                 ", startDate='" + startDate + '\'' +
                 ", endTime='" + endTime + '\'' +
                 ", endDate='" + endDate + '\'' +
+				", userName='" + userName + '\'' +
 				", id='" + id + '\'' +
                 '}';
     }

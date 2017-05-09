@@ -16,7 +16,11 @@ import java.sql.Date;
 import java.util.Calendar;
 
 /**
- * Created by Vilho on 19.4.2017.
+ * The DateEndPickerFragment fragment shows a datepicker for picking a work ending date.
+ *
+ * @author  Vilho Stenman
+ * @version 4.0
+ * @since   1.0
  */
 
 public class DateEndPickerFragment extends DialogFragment
@@ -39,7 +43,6 @@ public class DateEndPickerFragment extends DialogFragment
         TextView tv1 = (TextView) getActivity().findViewById(R.id.endDate);
         Date date = new Date(year-1900,month,day);
         month++;
-        Toast.makeText(getActivity(),date.toString(),Toast.LENGTH_SHORT).show();
         String days;
         if (day<10){
             days = "0"+day;

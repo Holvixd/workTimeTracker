@@ -12,7 +12,11 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 /**
- * Created by Vilho on 19.4.2017.
+ * The StartTimePickerFragment fragment shows a timepicker for picking a work staring time.
+ *
+ * @author  Vilho Stenman
+ * @version 4.0
+ * @since   1.0
  */
 
 public class StartTimePickerFragment extends DialogFragment
@@ -32,7 +36,6 @@ public class StartTimePickerFragment extends DialogFragment
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // Do something with the time chosen by the user
-        Toast.makeText(getActivity(),view.getId()+"",Toast.LENGTH_SHORT).show();
         TextView tv1 = (TextView) getActivity().findViewById(R.id.startTime);
         String hour;
         if (hourOfDay<10){
