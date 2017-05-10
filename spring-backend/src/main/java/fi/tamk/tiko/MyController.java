@@ -13,30 +13,60 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.ArrayList;
 import java.util.List;
 
-// This class acts as a controller.
-// Usually when using @Controller, you will use also @RequestMapping
+/**
+ * This class acts as a controller.
+ *
+ * @author  Vilho Stenman
+ * @version 4.0
+ * @since   1.0
+ */
 @RestController
 public class MyController {
     @Autowired
     WorkDataRepository database;
     
-	public MyController() {
+   /**
+    * Constructs the controller.
+    *
+    * @version      4.0
+    * @since        1.0
+    */
+    public MyController() {
     }
-	
-	// curl -H "Content-type: application/json" -X POST -d '{some json}'
-	// http://localhost:8080/workForm
+
+   /**
+    * Saves the workform to the database.
+    *
+    * @param c      Workdata
+    * @version      4.0
+    * @since        1.0
+    */
     @RequestMapping(value = "/workForm",  method=RequestMethod.POST)
     public void saveWorkData(@RequestBody WorkData c) {
         database.save(c);
     }
 	
-	@RequestMapping(value = "/workForm",  method=RequestMethod.GET)
+   /**
+    * Gets all workdata from the database.
+    *
+    * @return       All workdata
+    * @version      4.0
+    * @since        1.0
+    */
+    @RequestMapping(value = "/workForm",  method=RequestMethod.GET)
     public Iterable<WorkData> fetchWorkData() {
         return database.findAll();
     }
 	
-	
-	@RequestMapping(value = "/dates/{userName}",  method=RequestMethod.GET)
+   /**
+    * Gets all dates that a specific user has worked on from the database.
+    *
+    * @param userName   User's username
+    * @return           All dates the user has work on
+    * @version          4.0
+    * @since            4.0
+    */
+    @RequestMapping(value = "/dates/{userName}",  method=RequestMethod.GET)
     public List<String> fetchWorkDates(@PathVariable String userName) {
 		List<String> list = new ArrayList<>();
 		for(WorkData c : database.findAll()) {
@@ -49,18 +79,41 @@ public class MyController {
         return list;
     }
 	
-	@RequestMapping(value = "/update/{id}",  method=RequestMethod.POST)
+   /**
+    * Updates workdata with a specific id.
+    *
+    * @param id     Id of the data
+    * @param data   New data
+    * @version      4.0
+    * @since        3.0
+    */
+    @RequestMapping(value = "/update/{id}",  method=RequestMethod.POST)
     public void updateWork(@PathVariable long id, @RequestBody WorkData data) {
 		database.delete(id);
 		database.save(data);
     }
 	
-	@RequestMapping(value = "/delete/{id}",  method=RequestMethod.DELETE)
+   /**
+    * Deletes workdata with a specific id.
+    *
+    * @param id     Id of the data
+    * @version      4.0
+    * @since        3.0
+    */
+    @RequestMapping(value = "/delete/{id}",  method=RequestMethod.DELETE)
     public void updateWork(@PathVariable long id) {
 		database.delete(id);
     }
 	
-	@RequestMapping(value = "/workForm/{userName}/{date}",  method=RequestMethod.GET)
+   /**
+    * Gets all workdata that a specific user has worked on a specific day.
+    *
+    * @param userName   User's username
+    * @param date       The date
+    * @version          4.0
+    * @since            3.0
+    */
+    @RequestMapping(value = "/workForm/{userName}/{date}",  method=RequestMethod.GET)
     public List<WorkData> fetchWorkData(@PathVariable String userName, @PathVariable String date) {
 		List<WorkData> list = new ArrayList<>();
         for(WorkData c : database.findAll()) {

@@ -66,6 +66,13 @@ public class CalendarActivity extends AppCompatActivity {
     private final String USER_AGENT = "AndroidDevice";
 
 
+    /**
+     * Creates the view.
+     *
+     *
+     * @param savedInstanceState        Saved states
+     * @since                           2.0
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,25 +135,20 @@ public class CalendarActivity extends AppCompatActivity {
                 }else{
                     year1=year+"";
                 }
-                /*
-                tv.setText("");
-                tv2.setText("");
-                tv3.setText("");
-                */
                 new FetchWork().execute();
                 setSelectedDates();
             }
         };
 
         calendar.setOnDateChangedListener(listener3);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        setSelectedDates();
     }
 
+    /**
+     * Highlights the dates that have been worked on.
+     *
+     *
+     * @since                2.0
+     */
     public void setSelectedDates(){
         calendar.clearSelection();
         for(int i = 0; i < dates.size(); i++){
@@ -155,8 +157,22 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * The FetchWork class has the conversation with
+     * backend to get workdata of a specific day.
+     *
+     * @author  Vilho Stenman
+     * @version 4.0
+     * @since   2.0
+     */
     private class FetchWork extends AsyncTask<URL, String, String> {
+
+        /**
+         * Gets data from backend.
+         *
+         * @param params         Url addresses
+         * @since                2.0
+         */
         @Override
         protected String doInBackground(URL... params) {
 
@@ -205,7 +221,23 @@ public class CalendarActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * The FetchWork class has the conversation with
+     * backend to get dates that have been worked on.
+     *
+     * @author  Vilho Stenman
+     * @version 4.0
+     * @since   2.0
+     */
     private class FetchDates extends AsyncTask<URL, String, String> {
+
+        /**
+         * Gets data from backend.
+         *
+         * @param params         Url addresses
+         * @return               nothing
+         * @since                2.0
+         */
         @Override
         protected String doInBackground(URL... params) {
 
@@ -248,6 +280,14 @@ public class CalendarActivity extends AppCompatActivity {
                     date.setMonth(Integer.parseInt(dates2.get(i).substring(3,5))-1);
                     date.setYear(Integer.parseInt(dates2.get(i).substring(6,10))-1900);
                     dates.add(date);
+                    if(i==dates2.size()-1){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                setSelectedDates();
+                            }
+                        });
+                    }
                 }
 
 

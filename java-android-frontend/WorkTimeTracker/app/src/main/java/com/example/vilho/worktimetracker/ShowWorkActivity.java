@@ -37,6 +37,13 @@ public class ShowWorkActivity extends AppCompatActivity {
     TextView showEndDate;
     private final String USER_AGENT = "AndroidDevice";
 
+    /**
+     * Creates the view.
+     *
+     *
+     * @param savedInstanceState        Saved states
+     * @since                           3.0
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,17 +64,48 @@ public class ShowWorkActivity extends AppCompatActivity {
         showEndDate.setText(getIntent().getStringExtra("endDate"));
     }
 
+    /**
+     * Switches to formupdate activity.
+     *
+     *
+     * @param v        Clicked element
+     * @since          3.0
+     */
     public void goToEdit(View v){
         Intent intent = new Intent(this,FormUpdateActivity.class);
         intent.putExtras(getIntent().getExtras());
         startActivity(intent);
     }
+
+    /**
+     * Executes the delete of a selected workdata.
+     *
+     *
+     * @param v        Clicked element
+     * @since          3.0
+     */
     public void goDelete(View v){
         new DeleteWork().execute();
 
     }
 
+    /**
+     * The DeleteWork class has the conversation with
+     * backend to delete workdata from the database.
+     *
+     * @author  Vilho Stenman
+     * @version 4.0
+     * @since   3.0
+     */
     private class DeleteWork extends AsyncTask<URL, String, String> {
+
+        /**
+         * Deletes data from backend.
+         *
+         * @param params         Url addresses
+         * @return               nothing
+         * @since                3.0
+         */
         @Override
         protected String doInBackground(URL... params) {
 

@@ -26,6 +26,14 @@ import java.util.Calendar;
 public class DateEndPickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
+    /**
+     * Creates the dialog.
+     *
+     *
+     * @param savedInstanceState        Saved states
+     * @return                          Created dialog
+     * @since                           1.0
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
@@ -38,6 +46,16 @@ public class DateEndPickerFragment extends DialogFragment
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
+    /**
+     * Sets the textview's text to correspond the date that user has chosen.
+     *
+     *
+     * @param view      Datepicker dialog
+     * @param year      Year picked by user
+     * @param month     Month picked by user
+     * @param day       Day picked by user
+     * @since           1.0
+     */
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // Do something with the date chosen by the user
         TextView tv1 = (TextView) getActivity().findViewById(R.id.endDate);

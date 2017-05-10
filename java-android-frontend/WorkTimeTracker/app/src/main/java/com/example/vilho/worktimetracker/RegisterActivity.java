@@ -28,7 +28,13 @@ public class RegisterActivity extends AppCompatActivity {
     EditText ePassword;
     Button button;
 
-
+    /**
+     * Creates the view.
+     *
+     *
+     * @param savedInstanceState        Saved states
+     * @since                           4.0
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +46,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Tries to register the user.
+     *
+     *
+     * @param v        Clicked object
+     * @since          4.0
+     */
     public void onClick(View v){
         String name = eName.getText().toString();
         String userName = eUserName.getText().toString();

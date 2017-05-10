@@ -22,6 +22,14 @@ import java.util.Calendar;
 public class StartTimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {
 
+    /**
+     * Creates the dialog.
+     *
+     *
+     * @param savedInstanceState        Saved states
+     * @return                          Created dialog
+     * @since                           1.0
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker
@@ -34,6 +42,15 @@ public class StartTimePickerFragment extends DialogFragment
                 DateFormat.is24HourFormat(getActivity()));
     }
 
+    /**
+     * Sets the textview's text to correspond the time that user has chosen.
+     *
+     *
+     * @param view      Timepicker dialog
+     * @param hourOfDay Hour picked by user
+     * @param minute    Minute picked by user
+     * @since           1.0
+     */
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // Do something with the time chosen by the user
         TextView tv1 = (TextView) getActivity().findViewById(R.id.startTime);

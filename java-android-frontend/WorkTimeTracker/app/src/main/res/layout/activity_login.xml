@@ -16,6 +16,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:hint="Password"
         android:id="@+id/logPassword"/>
     <Button
@@ -29,16 +30,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Don't have an account?"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
         android:textSize="20dp"
         android:id="@+id/logInfo1">
     </TextView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:hint="Register now by clicking here!"
+        android:textAlignment="center"
+        android:layout_weight="1"
         android:textSize="20dp"
         android:id="@+id/logInfo2"
-        android:layout_weight="1"
         android:onClick="goToRegister">
     </TextView>
 
@@ -46,7 +51,8 @@
         android:id="@+id/logInfo3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Login/registering not working? Try the app as a public test user by clicking here!"
+        android:hint="Login/registering not working?\n Try the app as a public test user\n by clicking here!"
+        android:textAlignment="center"
         android:onClick="debug"></TextView>
 
 

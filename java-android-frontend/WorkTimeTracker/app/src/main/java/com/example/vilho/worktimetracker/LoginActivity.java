@@ -30,6 +30,14 @@ public class LoginActivity extends AppCompatActivity {
     EditText ePassword;
     TextView click;
     Button button;
+
+    /**
+     * Creates the view.
+     *
+     *
+     * @param savedInstanceState        Saved states
+     * @since                           4.0
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +49,13 @@ public class LoginActivity extends AppCompatActivity {
         click.setTextColor(Color.parseColor("#0000EE"));
     }
 
+    /**
+     * Tries to log in the user.
+     *
+     *
+     * @param v        Clicked object
+     * @since          4.0
+     */
     public void onClick(View v){
 
         final String username = eUserName.getText().toString();
@@ -81,11 +96,25 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Switches to register activity.
+     *
+     *
+     * @param v        Clicked object
+     * @since          4.0
+     */
     public void goToRegister(View v){
         Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Logs in using the public user.
+     *
+     *
+     * @param v        Clicked object
+     * @since          4.0
+     */
     public void debug(View v){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra("name", "PublicTestUser");

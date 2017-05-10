@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +44,14 @@ public class FormUpdateActivity extends AppCompatActivity {
     TextView tv4;
     String tv4Text;
     Button update;
+
+    /**
+     * Creates the view.
+     *
+     *
+     * @param savedInstanceState        Saved states
+     * @since                           3.0
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,41 +72,96 @@ public class FormUpdateActivity extends AppCompatActivity {
         tv2.setText(getIntent().getStringExtra("startDate"));
         tv3.setText(getIntent().getStringExtra("endTime"));
         tv4.setText(getIntent().getStringExtra("endDate"));
-
-
     }
 
+    /**
+     * Shows the starting timepicker.
+     *
+     *
+     * @param v       Current view
+     * @since         3.0
+     */
     public void showStartTimePickerDialog(View v) {
         DialogFragment newFragment = new StartTimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
+
+    /**
+     * Shows the ending timepicker.
+     *
+     *
+     * @param v       Current view
+     * @since         3.0
+     */
     public void showEndTimePickerDialog(View v) {
         DialogFragment newFragment = new EndTimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
+
+    /**
+     * Shows the starting datepicker.
+     *
+     *
+     * @param v       Current view
+     * @since         3.0
+     */
     public void showDateStartPickerDialog(View v) {
         DialogFragment newFragment = new DateStartPickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
+    /**
+     * Shows the ending datepicker.
+     *
+     *
+     * @param v       Current view
+     * @since         3.0
+     */
     public void showDateEndPickerDialog(View v) {
         DialogFragment newFragment = new DateEndPickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-    public void submit(View v) {
-        ed1Text = ed1.getText().toString();
-        ed2Text = ed2.getText().toString();
-        ed3Text = ed3.getText().toString();
-        tv1Text = tv1.getText().toString();
-        tv2Text = tv2.getText().toString();
-        tv3Text = tv3.getText().toString();
-        tv4Text = tv4.getText().toString();
-        new SendWork().execute();
 
+    /**
+     * Prepares the data to be ready for submitting.
+     *
+     *
+     * @param v       Current view
+     * @since         3.0
+     */
+    public void submit(View v) {
+        if(ed3.getText().toString().isEmpty()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(FormUpdateActivity.this);
+            builder.setMessage("Please give a subject to your work.").setNegativeButton("Ok",null).create().show();
+        }else{
+            ed1Text = ed1.getText().toString();
+            ed2Text = ed2.getText().toString();
+            ed3Text = ed3.getText().toString();
+            tv1Text = tv1.getText().toString();
+            tv2Text = tv2.getText().toString();
+            tv3Text = tv3.getText().toString();
+            tv4Text = tv4.getText().toString();
+            new SendWork().execute();
+        }
     }
 
-
-
+    /**
+     * The SendWork class has the conversation with
+     * backend to post workdata to the database.
+     *
+     * @author  Vilho Stenman
+     * @version 4.0
+     * @since   1.0
+     */
     private class SendWork extends AsyncTask<URL, String, String> {
+
+        /**
+         * Posts data to backend.
+         *
+         * @param params         Url addresses
+         * @return               Sent json as string
+         * @since                3.0
+         */
         @Override
         protected String doInBackground(URL... params) {
 
