@@ -1,4 +1,4 @@
-package com.example.vilho.worktimetracker;
+package fi.tamk.vilho.worktimetracker;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.sql.Date;
 import java.util.Calendar;

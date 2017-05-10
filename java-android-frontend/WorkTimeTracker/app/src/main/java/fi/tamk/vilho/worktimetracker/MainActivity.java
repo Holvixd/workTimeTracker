@@ -1,4 +1,4 @@
-package com.example.vilho.worktimetracker;
+package fi.tamk.vilho.worktimetracker;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

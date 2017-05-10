@@ -1,4 +1,4 @@
-package com.example.vilho.worktimetracker;
+package fi.tamk.vilho.worktimetracker;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;

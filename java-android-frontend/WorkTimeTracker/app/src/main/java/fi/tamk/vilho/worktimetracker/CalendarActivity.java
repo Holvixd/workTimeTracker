@@ -1,22 +1,15 @@
-package com.example.vilho.worktimetracker;
+package fi.tamk.vilho.worktimetracker;
 
 import android.content.Intent;
-import android.database.DataSetObserver;
-import android.icu.util.Calendar;
 import android.os.AsyncTask;
-import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CalendarView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;

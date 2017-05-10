@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.vilho.worktimetracker">
+    package="fi.tamk.vilho.worktimetracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,30 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="fi.tamk.vilho.worktimetracker.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".FormActivity"
+            android:name="fi.tamk.vilho.worktimetracker.FormActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CalendarActivity"
+            android:name="fi.tamk.vilho.worktimetracker.CalendarActivity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ShowWorkActivity"
+            android:name="fi.tamk.vilho.worktimetracker.ShowWorkActivity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FormUpdateActivity"
+            android:name="fi.tamk.vilho.worktimetracker.FormUpdateActivity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".LoginActivity"
+        <activity android:name="fi.tamk.vilho.worktimetracker.LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -43,7 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
+        <activity android:name="fi.tamk.vilho.worktimetracker.RegisterActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:noHistory="true"/>

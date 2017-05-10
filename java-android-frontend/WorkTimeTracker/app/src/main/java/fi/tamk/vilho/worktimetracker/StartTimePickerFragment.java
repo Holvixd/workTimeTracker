@@ -1,4 +1,4 @@
-package com.example.vilho.worktimetracker;
+package fi.tamk.vilho.worktimetracker;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -7,19 +7,18 @@ import android.support.v4.app.DialogFragment;
 import android.text.format.DateFormat;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
 /**
- * The EndTimePickerFragment fragment shows a timepicker for picking a work ending time.
+ * The StartTimePickerFragment fragment shows a timepicker for picking a work staring time.
  *
  * @author  Vilho Stenman
  * @version 4.0
  * @since   1.0
  */
 
-public class EndTimePickerFragment extends DialogFragment
+public class StartTimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {
 
     /**
@@ -53,7 +52,7 @@ public class EndTimePickerFragment extends DialogFragment
      */
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // Do something with the time chosen by the user
-        TextView tv1 = (TextView) getActivity().findViewById(R.id.endTime);
+        TextView tv1 = (TextView) getActivity().findViewById(R.id.startTime);
         String hour;
         if (hourOfDay<10){
             hour = "0"+hourOfDay;

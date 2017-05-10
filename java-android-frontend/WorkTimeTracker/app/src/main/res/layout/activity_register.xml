@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.vilho.worktimetracker.RegisterActivity">
+    tools:context="fi.tamk.vilho.worktimetracker.RegisterActivity">
 
     <EditText
         android:layout_width="match_parent"

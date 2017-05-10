@@ -1,13 +1,11 @@
-package com.example.vilho.worktimetracker;
+package fi.tamk.vilho.worktimetracker;
 
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,13 +20,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * The FormActivity activity shows a form filled with workdata that user can edit.
+ * The FormActivity activity shows a form that user can fill with workdata.
  *
  * @author  Vilho Stenman
  * @version 4.0
- * @since   3.0
+ * @since   1.0
  */
-public class FormUpdateActivity extends AppCompatActivity {
+public class FormActivity extends AppCompatActivity {
     EditText ed1;
     String ed1Text;
     EditText ed2;
@@ -43,35 +41,26 @@ public class FormUpdateActivity extends AppCompatActivity {
     String tv3Text;
     TextView tv4;
     String tv4Text;
-    Button update;
 
     /**
      * Creates the view.
      *
      *
      * @param savedInstanceState        Saved states
-     * @since                           3.0
+     * @since                           1.0
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
         ed1=(EditText) findViewById(R.id.edName);
-        ed2=(EditText) findViewById(R.id.edCompany);
-        ed3=(EditText) findViewById(R.id.edWork);
+        ed2=(EditText) findViewById(R.id.edWork);
+        ed3=(EditText) findViewById(R.id.edCompany);
         tv1=(TextView) findViewById(R.id.startTime);
         tv2=(TextView) findViewById(R.id.startDate);
         tv3=(TextView) findViewById(R.id.endTime);
         tv4=(TextView) findViewById(R.id.endDate);
-        update = (Button) findViewById(R.id.submitWork);
-        update.setText("Update work");
         ed1.setText(getIntent().getStringExtra("name"));
-        ed2.setText(getIntent().getStringExtra("company"));
-        ed3.setText(getIntent().getStringExtra("subject"));
-        tv1.setText(getIntent().getStringExtra("startTime"));
-        tv2.setText(getIntent().getStringExtra("startDate"));
-        tv3.setText(getIntent().getStringExtra("endTime"));
-        tv4.setText(getIntent().getStringExtra("endDate"));
     }
 
     /**
@@ -79,7 +68,7 @@ public class FormUpdateActivity extends AppCompatActivity {
      *
      *
      * @param v       Current view
-     * @since         3.0
+     * @since         1.0
      */
     public void showStartTimePickerDialog(View v) {
         DialogFragment newFragment = new StartTimePickerFragment();
@@ -91,7 +80,7 @@ public class FormUpdateActivity extends AppCompatActivity {
      *
      *
      * @param v       Current view
-     * @since         3.0
+     * @since         1.0
      */
     public void showEndTimePickerDialog(View v) {
         DialogFragment newFragment = new EndTimePickerFragment();
@@ -103,7 +92,7 @@ public class FormUpdateActivity extends AppCompatActivity {
      *
      *
      * @param v       Current view
-     * @since         3.0
+     * @since         1.0
      */
     public void showDateStartPickerDialog(View v) {
         DialogFragment newFragment = new DateStartPickerFragment();
@@ -115,7 +104,7 @@ public class FormUpdateActivity extends AppCompatActivity {
      *
      *
      * @param v       Current view
-     * @since         3.0
+     * @since         1.0
      */
     public void showDateEndPickerDialog(View v) {
         DialogFragment newFragment = new DateEndPickerFragment();
@@ -127,13 +116,27 @@ public class FormUpdateActivity extends AppCompatActivity {
      *
      *
      * @param v       Current view
-     * @since         3.0
+     * @since         1.0
      */
     public void submit(View v) {
-        if(ed3.getText().toString().isEmpty()){
-            AlertDialog.Builder builder = new AlertDialog.Builder(FormUpdateActivity.this);
+        boolean success = checkInputs();
+        if(ed2.getText().toString().isEmpty()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
             builder.setMessage("Please give a subject to your work.").setNegativeButton("Ok",null).create().show();
-        }else{
+        }
+        else if(ed2.getText().toString().contains("ä")
+                ||ed2.getText().toString().contains("ö")
+                ||ed2.getText().toString().contains("å")
+                ||ed3.getText().toString().contains("ä")
+                ||ed3.getText().toString().contains("ö")
+                ||ed3.getText().toString().contains("å")
+                ||ed1.getText().toString().contains("ä")
+                ||ed1.getText().toString().contains("ö")
+                ||ed1.getText().toString().contains("å")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
+            builder.setMessage("Sorry the app doesnt support skandinavian letters").setNegativeButton("Ok",null).create().show();
+        }
+        else if(success){
             ed1Text = ed1.getText().toString();
             ed2Text = ed2.getText().toString();
             ed3Text = ed3.getText().toString();
@@ -143,7 +146,36 @@ public class FormUpdateActivity extends AppCompatActivity {
             tv4Text = tv4.getText().toString();
             new SendWork().execute();
         }
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
+            builder.setMessage("Please select all times and dates.").setNegativeButton("Ok",null).create().show();
+        }
+
     }
+
+    /**
+     * Checks the data to be ready for submitting.
+     *
+     *
+     * @since         1.0
+     */
+    public boolean checkInputs(){
+        boolean success = true;
+        if(tv1.getText().toString().contains("t")){
+            success = false;
+        }
+        if(tv2.getText().toString().contains("t")){
+            success = false;
+        }
+        if(tv3.getText().toString().contains("t")){
+            success = false;
+        }
+        if(tv4.getText().toString().contains("t")){
+            success = false;
+        }
+        return success;
+    }
+
 
     /**
      * The SendWork class has the conversation with
@@ -160,14 +192,14 @@ public class FormUpdateActivity extends AppCompatActivity {
          *
          * @param params         Url addresses
          * @return               Sent json as string
-         * @since                3.0
+         * @since                1.0
          */
         @Override
         protected String doInBackground(URL... params) {
 
             String workForm="{name: \""+ed1Text
-                    +"\", company: \""+ed2Text
-                    +"\", subject: \""+ed3Text
+                    +"\", subject: \""+ed2Text
+                    +"\", company: \""+ed3Text
                     +"\", startTime: \""+tv1Text
                     +"\", startDate: \""+tv2Text
                     +"\", endTime: \""+tv3Text
@@ -175,7 +207,7 @@ public class FormUpdateActivity extends AppCompatActivity {
                     +"\", userName: \""+getIntent().getStringExtra("userName")+"\"}";
             try {
                 JSONObject workObj = new JSONObject(workForm);
-                URL url = new URL("http://46.101.111.83:8008/update/"+getIntent().getLongExtra("id",0));
+                URL url = new URL("http://46.101.111.83:8008/workForm");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");
@@ -187,13 +219,12 @@ public class FormUpdateActivity extends AppCompatActivity {
                 out.flush();
                 out.close();
                 runOnUiThread(new Runnable() {
-                     @Override
-                     public void run() {
-                         Toast.makeText(FormUpdateActivity.this,"Work succesfully updated",Toast.LENGTH_SHORT).show();
-                     }
+                    @Override
+                    public void run() {
+                        Toast.makeText(FormActivity.this,"Work succesfully submitted",Toast.LENGTH_SHORT).show();
+                    }
                 });
                 finish();
-
             }  catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

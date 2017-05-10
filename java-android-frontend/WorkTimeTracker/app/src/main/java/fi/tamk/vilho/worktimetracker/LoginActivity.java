@@ -1,4 +1,4 @@
-package com.example.vilho.worktimetracker;
+package fi.tamk.vilho.worktimetracker;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -60,39 +60,46 @@ public class LoginActivity extends AppCompatActivity {
 
         final String username = eUserName.getText().toString();
         final String password = ePassword.getText().toString();
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    boolean success = jsonObject.getBoolean("success");
-                    if(success){
-                        String name = jsonObject.getString("name");
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.putExtra("name", name);
-                        intent.putExtra("userName", username);
-                        startActivity(intent);
-                    }else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                        builder.setMessage("Invalid username or password").setNegativeButton("Retry",null).create().show();
+        if(username.contains("ä")||username.contains("ö")||username.contains("å")
+                ||password.contains("ä")||password.contains("ö")||password.contains("å")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+            builder.setMessage("Sorry the app doesnt support skandinavian letters").setNegativeButton("Retry",null).create().show();
+        }else{
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        boolean success = jsonObject.getBoolean("success");
+                        if(success){
+                            String name = jsonObject.getString("name");
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("name", name);
+                            intent.putExtra("userName", username);
+                            startActivity(intent);
+                        }else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                            builder.setMessage("Invalid username or password").setNegativeButton("Retry",null).create().show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        };
-        Response.ErrorListener errorListener =new Response.ErrorListener(){
+            };
+            Response.ErrorListener errorListener =new Response.ErrorListener(){
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setMessage("Login server is down. Try again later.").setNegativeButton("Ok",null).create().show();
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage("Login server is down. Try again later.").setNegativeButton("Ok",null).create().show();
 
-            }
-        };
-        LoginRequest loginRequest = new LoginRequest(username, password, responseListener, errorListener);
-        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        queue.add(loginRequest);
+                }
+            };
+            LoginRequest loginRequest = new LoginRequest(username, password, responseListener, errorListener);
+            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+            queue.add(loginRequest);
+        }
+
 
     }
 
